@@ -1,0 +1,175 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.cardConatiner {
+  display: flex;
+  max-width: 450px;
+  width: 450px;
+  padding: 23px;
+  height: 500px;
+  background: #24272c;
+  border-radius: 5%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  flex-direction: column;
+}
+.header {
+  color: white;
+  font-weight: normal;
+  font-size: 26px;
+  word-spacing: 5.5px;
+  margin: 0px;
+}
+
+.CurrencyCardContainer {
+  height: 100%;
+  background: #2f333a;
+  border-radius: 5%;
+  margin-top: 20px;
+  padding: 5px 24px;
+}
+
+.amountTtile {
+  color: #6e6e6e;
+  text-align: left;
+  margin: 0px;
+  font-size: 13px;
+  padding-bottom: 10px;
+}
+
+svg {
+  width: 47px;
+  height: 36px;
+  fill: #6c42f8;
+  cursor: pointer;
+}
+
+.AmountInputContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.currency-dropdown {
+  position: relative;
+  width: 100%;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.selected-option {
+  display: flex;
+  align-items: center;
+  width: 105px;
+  gap: 8px;
+  border-radius: 6px;
+  color: #6c42f8;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 13px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.option:hover {
+  background: #6c42f8;
+  color: #fff;
+}
+
+.currencyText {
+  font-weight: 600;
+}
+
+.selected-option::after {
+  content: "";
+  background-image: url("../Logo/dropdown-arrow.svg");
+  display: inline-block;
+  width: 22%;
+  height: 21px;
+  position: absolute;
+  background-position-x: 60px;
+  background-position-y: -1px;
+  background-size: 21px;
+  background-repeat: no-repeat;
+}
+
+.currencyWrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+input.amountInpout {
+  background-color: #24272c;
+  box-shadow: none;
+  outline: unset;
+  width: 100%;
+  border: unset;
+  border-radius: 15px;
+  height: 35px;
+  color: #6c42f8;
+  font-weight: 900;
+  padding: 0 13px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button {
+  background-color: #6c42f8;
+  color: white;
+}
+
+.currencyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .cardConatiner {
+    display: flex;
+    width: 300px;
+    padding: 23px;
+    height: 385px;
+  }
+
+  .card,
+  #root {
+    padding: 0px;
+  }
+}
