@@ -14,7 +14,6 @@
   max-width: 450px;
   width: 450px;
   padding: 23px;
-  height: 500px;
   background: #24272c;
   border-radius: 5%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -33,7 +32,7 @@
   background: #2f333a;
   border-radius: 5%;
   margin-top: 20px;
-  padding: 5px 24px;
+  padding: 25px;
 }
 
 .amountTtile {
@@ -165,7 +164,6 @@ button {
     display: flex;
     width: 300px;
     padding: 23px;
-    height: 385px;
   }
 
   .card,

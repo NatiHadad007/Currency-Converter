@@ -10,17 +10,16 @@ const CurrencySelect = () => {
   const [amountValue, setAmountValue] = useState(0);
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("EUR");
-  const [openFrom, setOpenFrom] = useState(false);
-  const [openTo, setOpenTo] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   const handleSelectFrom = (code) => {
     setFromCurrency(code);
-    setOpenFrom(false);
+    setOpenDropdown(null);
   };
 
   const handleSelectTo = (code) => {
     setToCurrency(code);
-    setOpenTo(false);
+    setOpenDropdown(null);
   };
 
   const submitConver = () => {
@@ -34,7 +33,6 @@ const CurrencySelect = () => {
     setFromCurrency(toCurrency);
     setToCurrency(prevFrom);
 
-    // swap values
     if (amount?.convertedValue) {
       setAmountValue(amount.convertedValue);
     }
@@ -53,34 +51,34 @@ const CurrencySelect = () => {
         <div className="currency-dropdown">
           <div
             className="selected-option"
-            onClick={() => setOpenFrom((prev) => !prev)} // <-- use openFrom here
+            onClick={() =>
+              setOpenDropdown(openDropdown === "from" ? null : "from")
+            }
           >
-            {currencyToFlag[fromCurrency] ? (
+            {currencyToFlag[fromCurrency] && (
               <img
                 src={`https://flagcdn.com/w20/${currencyToFlag[fromCurrency]}.png`}
                 alt={fromCurrency}
               />
-            ) : (
-              ""
             )}
             <span className="currencyText">{fromCurrency}</span>
           </div>
 
-          {openFrom && (
+          {openDropdown === "from" && (
             <div className="options">
               {Object.keys(currencySymbols).map((code) => (
                 <div
                   key={code}
                   className="option"
-                  onClick={() => handleSelectFrom(code)}
+                  onClick={() =>
+                    code !== toCurrency ? handleSelectFrom(code) : ""
+                  }
                 >
-                  {currencyToFlag[code] ? (
+                  {currencyToFlag[code] && (
                     <img
                       src={`https://flagcdn.com/w20/${currencyToFlag[code]}.png`}
                       alt={code}
                     />
-                  ) : (
-                    ""
                   )}
                   <span className="currencyText">{code}</span>
                 </div>
@@ -90,47 +88,45 @@ const CurrencySelect = () => {
           <input
             className="amountInpout"
             type="number"
-            name=""
-            id="amountInputId"
             value={amountValue}
             onChange={(e) => setAmountValue(e.target.value)}
           />
         </div>
       </div>
+
       <MdSwapVerticalCircle onClick={swapHandler} />
+
       <div className="currencyWrapper">
         <p className="amountTtile">Converted Amount</p>
         <div className="currency-dropdown">
           <div
             className="selected-option"
-            onClick={() => setOpenTo((prev) => !prev)}
+            onClick={() => setOpenDropdown(openDropdown === "to" ? null : "to")}
           >
-            {currencyToFlag[toCurrency] ? (
+            {currencyToFlag[toCurrency] && (
               <img
                 src={`https://flagcdn.com/w20/${currencyToFlag[toCurrency]}.png`}
                 alt={toCurrency}
               />
-            ) : (
-              ""
             )}
             <span className="currencyText">{toCurrency}</span>
           </div>
 
-          {openTo && (
+          {openDropdown === "to" && (
             <div className="options">
               {Object.keys(currencySymbols).map((code) => (
                 <div
                   key={code}
                   className="option"
-                  onClick={() => handleSelectTo(code)}
+                  onClick={() =>
+                    code !== fromCurrency ? handleSelectTo(code) : ""
+                  }
                 >
-                  {currencyToFlag[code] ? (
+                  {currencyToFlag[code] && (
                     <img
                       src={`https://flagcdn.com/w20/${currencyToFlag[code]}.png`}
                       alt={code}
                     />
-                  ) : (
-                    ""
                   )}
                   <span className="currencyText">{code}</span>
                 </div>
@@ -140,13 +136,12 @@ const CurrencySelect = () => {
           <input
             className="amountInpout"
             type="number"
-            name=""
-            id="amountConvertedInputId"
             value={amount.convertedValue || ""}
             disabled
           />
         </div>
       </div>
+
       <button onClick={submitConver}>Convert</button>
     </div>
   );
